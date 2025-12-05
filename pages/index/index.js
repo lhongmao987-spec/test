@@ -20,7 +20,8 @@ Page({
     timeOptions: [60, 90, 120],
     categories: [], // 分类列表
     categoryIcons: categoryIcons, // 分类图标映射
-    selectedCategory: null // 选中的分类，null表示全部
+    selectedCategory: null, // 选中的分类，null表示全部
+    isNavigating: false // 是否正在跳转，用于防抖
   },
 
   onLoad() {
@@ -29,6 +30,11 @@ Page({
     this.setData({
       categories: categories
     });
+  },
+
+  onReady() {
+    // 页面渲染完成后，确保页面已完全加载
+    console.log('首页加载完成');
   },
 
   // 选择分类
@@ -51,22 +57,68 @@ Page({
 
   // 开始游戏
   startGame() {
+    // 防抖处理：如果正在跳转，忽略本次点击
+    if (this.data.isNavigating) {
+      console.log('正在跳转中，忽略重复点击');
+      return;
+    }
+
     console.log('开始游戏按钮被点击，时长：', this.data.selectedTime, '分类：', this.data.selectedCategory);
     const time = this.data.selectedTime || 60;
     const category = this.data.selectedCategory || '';
     const url = `/pages/game/game?time=${time}${category ? '&category=' + encodeURIComponent(category) : ''}`;
-    wx.navigateTo({
-      url: url,
-      success: () => {
-        console.log('页面跳转成功');
-      },
-      fail: (err) => {
-        console.error('页面跳转失败：', err);
-        wx.showToast({
-          title: '跳转失败，请重试',
-          icon: 'none'
-        });
-      }
+    
+    // 设置跳转状态
+    this.setData({
+      isNavigating: true
     });
+
+    // 延迟一小段时间确保页面完全准备好
+    setTimeout(() => {
+      wx.navigateTo({
+        url: url,
+        success: () => {
+          console.log('页面跳转成功');
+          // 跳转成功后重置状态
+          this.setData({
+            isNavigating: false
+          });
+        },
+        fail: (err) => {
+          console.error('页面跳转失败：', err);
+          // 重置跳转状态
+          this.setData({
+            isNavigating: false
+          });
+          
+          // 如果是超时错误，尝试重试一次
+          if (err.errMsg && err.errMsg.includes('timeout')) {
+            console.log('跳转超时，尝试重试...');
+            setTimeout(() => {
+              wx.navigateTo({
+                url: url,
+                success: () => {
+                  console.log('重试跳转成功');
+                },
+                fail: (retryErr) => {
+                  console.error('重试跳转失败：', retryErr);
+                  wx.showToast({
+                    title: '跳转失败，请重试',
+                    icon: 'none',
+                    duration: 2000
+                  });
+                }
+              });
+            }, 300);
+          } else {
+            wx.showToast({
+              title: '跳转失败，请重试',
+              icon: 'none',
+              duration: 2000
+            });
+          }
+        }
+      });
+    }, 100); // 延迟100ms确保页面完全准备好
   }
 });

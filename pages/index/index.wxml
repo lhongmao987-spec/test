@@ -1,5 +1,7 @@
 <!--index.wxml-->
-<navigation-bar title="疯狂猜词" back="{{false}}" color="white" background="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"></navigation-bar>
+<page-meta>
+  <navigation-bar title="疯狂猜词" back="{{false}}" color="white" background="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"></navigation-bar>
+</page-meta>
 <view class="page-container">
   <!-- 顶部区域 -->
   <view class="header">
@@ -11,10 +13,24 @@
   <view class="content">
     <!-- 规则说明卡片 -->
     <view class="rule-card">
-      <view class="rule-title">游戏规则</view>
-      <view class="rule-text">一名玩家手持设备，其他人看屏幕描述词语</view>
-      <view class="rule-text">持机者根据描述猜测，猜对点击左边，跳过点击右边</view>
-      <view class="rule-text">规定时间内猜对越多，得分越高！</view>
+      <view class="rule-header">
+        <text class="rule-icon">📋</text>
+        <view class="rule-title">游戏规则</view>
+      </view>
+      <view class="rule-content">
+        <view class="rule-item">
+          <text class="rule-item-icon">👤</text>
+          <text class="rule-item-text">一名玩家手持设备，其他人看屏幕描述词语</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-item-icon">👆</text>
+          <text class="rule-item-text">持机者根据描述猜测，猜对点击左边，跳过点击右边</text>
+        </view>
+        <view class="rule-item">
+          <text class="rule-item-icon">⏱️</text>
+          <text class="rule-item-text">规定时间内猜对越多，得分越高！</text>
+        </view>
+      </view>
     </view>
 
     <!-- 分类选择 -->
