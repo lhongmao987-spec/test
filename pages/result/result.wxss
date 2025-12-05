@@ -1,0 +1,154 @@
+/**result.wxss**/
+page {
+  height: 100vh;
+  background: #FFF7E6;
+}
+
+.result-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 30rpx 40rpx;
+  box-sizing: border-box;
+}
+
+/* 顶部图标 */
+.result-icon {
+  font-size: 120rpx;
+  margin-bottom: 40rpx;
+  animation: bounce 0.6s ease;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20rpx);
+  }
+}
+
+/* 成绩展示卡片 */
+.result-card {
+  width: 100%;
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 60rpx 40rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.12);
+  margin-bottom: 60rpx;
+  text-align: center;
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-title {
+  font-size: 32rpx;
+  color: #555555;
+  margin-bottom: 30rpx;
+}
+
+.result-score {
+  font-size: 120rpx;
+  font-weight: bold;
+  color: #FF6B6B;
+  line-height: 1;
+  margin-bottom: 24rpx;
+}
+
+.result-desc {
+  font-size: 32rpx;
+  color: #222222;
+  font-weight: bold;
+  margin-bottom: 40rpx;
+}
+
+.result-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  margin-top: 40rpx;
+  padding-top: 40rpx;
+  border-top: 1rpx solid #F0F0F0;
+}
+
+.info-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8rpx;
+  font-size: 28rpx;
+}
+
+.info-label {
+  color: #555555;
+}
+
+.info-value {
+  color: #222222;
+  font-weight: bold;
+}
+
+/* 按钮区域 */
+.button-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  margin-bottom: 40rpx;
+}
+
+.primary-btn {
+  width: 100%;
+  height: 96rpx;
+  background: #FFC94A;
+  color: #FFFFFF;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 24rpx;
+  border: none;
+  box-shadow: 0 4rpx 16rpx rgba(255, 201, 74, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary-btn::after {
+  border: none;
+}
+
+.secondary-btn {
+  width: 100%;
+  height: 88rpx;
+  background: #FFFFFF;
+  color: #555555;
+  font-size: 30rpx;
+  border: 2rpx solid #E0E0E0;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.secondary-btn::after {
+  border: none;
+}
+
+/* 提示文字 */
+.tip-text {
+  font-size: 24rpx;
+  color: #999999;
+  text-align: center;
+  line-height: 1.6;
+}
+

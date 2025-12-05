@@ -1,0 +1,37 @@
+<!--result.wxml-->
+<navigation-bar title="游戏结果" back="{{false}}" color="black" background="#FFF7E6"></navigation-bar>
+<view class="result-container">
+  <!-- 顶部图标 -->
+  <view class="result-icon">🏆</view>
+
+  <!-- 成绩展示卡片 -->
+  <view class="result-card">
+    <view class="result-title">本轮得分</view>
+    <view class="result-score">{{correctCount}}</view>
+    <view class="result-desc">{{evaluation}}</view>
+    <view class="result-info">
+      <view class="info-item">
+        <text class="info-label">在 {{timeLimit}} 秒内猜对了</text>
+        <text class="info-value">{{correctCount}} 个词语！</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">本轮跳过：</text>
+        <text class="info-value">{{skipCount}} 个</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">总共看过：</text>
+        <text class="info-value">{{totalCount}} 个词</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 按钮区域 -->
+  <view class="button-area">
+    <button class="primary-btn" bindtap="playAgain">再来一轮</button>
+    <button class="secondary-btn" bindtap="backToHome">返回首页</button>
+  </view>
+
+  <!-- 提示文字 -->
+  <view class="tip-text">更多功能（词库编辑、战绩记录）将在后续版本加入～</view>
+</view>
+

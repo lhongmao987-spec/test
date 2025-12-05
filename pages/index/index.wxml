@@ -1,7 +1,44 @@
 <!--index.wxml-->
-<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    Weixin
+<navigation-bar title="疯狂猜词" back="{{false}}" color="black" background="#FFF7E6"></navigation-bar>
+<view class="page-container">
+  <!-- 顶部区域 -->
+  <view class="header">
+    <view class="title">疯狂猜词</view>
+    <view class="subtitle">拿起手机，开始你们的神仙配合！</view>
   </view>
-</scroll-view>
+
+  <!-- 中间区域 -->
+  <view class="content">
+    <!-- 规则说明卡片 -->
+    <view class="rule-card">
+      <view class="rule-title">游戏规则</view>
+      <view class="rule-text">一名玩家手持设备，其他人看屏幕描述词语</view>
+      <view class="rule-text">持机者根据描述猜测，猜对点击左边，跳过点击右边</view>
+      <view class="rule-text">规定时间内猜对越多，得分越高！</view>
+    </view>
+
+    <!-- 时长选择 -->
+    <view class="time-selector">
+      <view class="time-label">选择时长</view>
+      <view class="time-options">
+        <view 
+          class="time-option {{selectedTime === item ? 'active' : ''}}"
+          wx:for="{{timeOptions}}"
+          wx:key="index"
+          data-time="{{item}}"
+          bindtap="selectTime"
+        >
+          {{item}}秒
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部区域 -->
+  <view class="footer">
+    <view class="start-btn" bindtap="startGame" hover-class="btn-hover">
+      <text>开始游戏</text>
+    </view>
+    <view class="version">v1.0 · 小程序内测版</view>
+  </view>
+</view>

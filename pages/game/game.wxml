@@ -1,0 +1,49 @@
+<!--game.wxml-->
+<navigation-bar title="游戏进行中" back="{{false}}" color="black" background="#FFF7E6"></navigation-bar>
+<view class="game-container">
+  <!-- 顶部栏 -->
+  <view class="top-bar">
+    <view class="back-btn" bindtap="onBack">
+      <text class="back-icon">‹</text>
+    </view>
+    <view class="timer">
+      <text class="timer-icon">⏱</text>
+      <text class="timer-text">剩余 {{remainingTime}}s</text>
+    </view>
+  </view>
+
+  <!-- 中间主区域 -->
+  <view class="main-area">
+    <view class="word-card {{cardAnimation}}">
+      <view class="hint-text">其他人看屏幕，你来猜！</view>
+      <view class="word-text">{{currentWord}}</view>
+    </view>
+    
+    <!-- 得分显示 -->
+    <view class="score-bar">
+      <text class="score-text">已猜对：{{correctCount}} 个</text>
+    </view>
+  </view>
+
+  <!-- 底部操作区域 -->
+  <view class="bottom-area">
+    <!-- 左半屏 - 正确 -->
+    <view class="action-left" bindtap="onCorrect">
+      <view class="action-content">
+        <text class="action-icon">✓</text>
+        <text class="action-text-large">正确</text>
+        <text class="action-text-small">点击左边</text>
+      </view>
+    </view>
+
+    <!-- 右半屏 - 跳过 -->
+    <view class="action-right" bindtap="onSkip">
+      <view class="action-content">
+        <text class="action-icon">→</text>
+        <text class="action-text-large">跳过</text>
+        <text class="action-text-small">点击右边</text>
+      </view>
+    </view>
+  </view>
+</view>
+

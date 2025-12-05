@@ -1,6 +1,8 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/game/game",
+    "pages/result/result"
   ],
   "window": {
     "navigationBarTextStyle": "black",
