@@ -44,12 +44,17 @@ Page({
     
     try {
       const time = parseInt(options.time) || 60;
-      console.log('解析时长：', time);
+      const category = options.category || null;
+      console.log('解析时长：', time, '分类：', category);
       
       // 获取词库
       let words = [];
       try {
-        words = getRandomWords ? getRandomWords(100) : [];
+        if (getRandomWords) {
+          words = category ? getRandomWords(100, decodeURIComponent(category)) : getRandomWords(100);
+        } else {
+          words = [];
+        }
         console.log('词库获取成功，词语数量：', words.length);
       } catch (e) {
         console.error('获取词库时出错：', e);
@@ -71,7 +76,8 @@ Page({
         words: words,
         currentWord: firstWord,
         totalCount: 1,
-        cardAnimation: 'fade-in'
+        cardAnimation: 'fade-in',
+        category: category ? decodeURIComponent(category) : null
       });
 
       console.log('数据设置完成，开始倒计时');
@@ -129,8 +135,9 @@ Page({
     const nextIndex = wordIndex + 1;
     
     if (nextIndex >= words.length) {
-      // 词库用完了，重新打乱
-      const newWords = getRandomWords ? getRandomWords(100) : [];
+      // 词库用完了，重新打乱（保持当前分类）
+      const category = this.data.category || null;
+      const newWords = getRandomWords ? (category ? getRandomWords(100, category) : getRandomWords(100)) : [];
       this.setData({
         words: newWords,
         wordIndex: 0,

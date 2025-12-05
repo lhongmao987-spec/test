@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<navigation-bar title="疯狂猜词" back="{{false}}" color="black" background="#FFF7E6"></navigation-bar>
+<navigation-bar title="疯狂猜词" back="{{false}}" color="white" background="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"></navigation-bar>
 <view class="page-container">
   <!-- 顶部区域 -->
   <view class="header">
@@ -15,6 +15,31 @@
       <view class="rule-text">一名玩家手持设备，其他人看屏幕描述词语</view>
       <view class="rule-text">持机者根据描述猜测，猜对点击左边，跳过点击右边</view>
       <view class="rule-text">规定时间内猜对越多，得分越高！</view>
+    </view>
+
+    <!-- 分类选择 -->
+    <view class="category-selector">
+      <view class="category-label">选择分类</view>
+      <view class="category-options">
+        <view 
+          class="category-option {{selectedCategory === null ? 'active' : ''}}"
+          data-category=""
+          bindtap="selectCategory"
+        >
+          <text class="category-icon">{{categoryIcons['全部']}}</text>
+          <text class="category-name">全部</text>
+        </view>
+        <view 
+          class="category-option {{selectedCategory === item ? 'active' : ''}}"
+          wx:for="{{categories}}"
+          wx:key="index"
+          data-category="{{item}}"
+          bindtap="selectCategory"
+        >
+          <text class="category-icon">{{categoryIcons[item]}}</text>
+          <text class="category-name">{{item}}</text>
+        </view>
+      </view>
     </view>
 
     <!-- 时长选择 -->

@@ -1,5 +1,5 @@
 <!--result.wxml-->
-<navigation-bar title="游戏结果" back="{{false}}" color="black" background="#FFF7E6"></navigation-bar>
+<navigation-bar title="游戏结果" back="{{false}}" color="white" background="linear-gradient(135deg, #667eea 0%, #764ba2 100%)"></navigation-bar>
 <view class="result-container">
   <!-- 顶部图标 -->
   <view class="result-icon">🏆</view>
