@@ -2,6 +2,8 @@
 page {
   height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* 安全区域适配 */
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .page-container {
@@ -9,26 +11,34 @@ page {
   display: flex;
   flex-direction: column;
   padding: 40rpx 30rpx;
+  padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
   box-sizing: border-box;
+  /* 确保内容可以滚动 */
+  overflow-y: auto;
 }
 
 /* 顶部区域 */
 .header {
   text-align: center;
-  margin-top: 40rpx;
-  margin-bottom: 40rpx;
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
+  flex-shrink: 0;
 }
 
 .title {
   font-size: 56rpx;
   font-weight: bold;
   color: #FFFFFF;
-  margin-bottom: 20rpx;
+  margin-bottom: 16rpx;
+  /* 小屏幕适配 */
+  font-size: clamp(44rpx, 7vw, 56rpx);
 }
 
 .subtitle {
   font-size: 28rpx;
   color: rgba(255, 255, 255, 0.9);
+  /* 小屏幕适配 */
+  font-size: clamp(24rpx, 4vw, 28rpx);
 }
 
 /* 中间区域 */
@@ -37,11 +47,16 @@ page {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 0;
+  /* 允许内容区域滚动 */
+  overflow-y: auto;
+  width: 100%;
 }
 
 /* 规则说明卡片 */
 .rule-card {
   width: 100%;
+  max-width: 700rpx;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10rpx);
   border-radius: 24rpx;
@@ -51,6 +66,9 @@ page {
   border: 1rpx solid rgba(255, 255, 255, 0.3);
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
+  /* 小屏幕适配 */
+  padding: clamp(24rpx, 4vw, 32rpx) clamp(20rpx, 3.5vw, 28rpx);
 }
 
 .rule-card::before {
@@ -140,6 +158,8 @@ page {
   flex-wrap: wrap;
   justify-content: center;
   gap: 16rpx;
+  /* 小屏幕适配 */
+  gap: clamp(12rpx, 2vw, 16rpx);
 }
 
 .category-option {
@@ -156,6 +176,9 @@ page {
   justify-content: center;
   gap: 8rpx;
   min-width: 120rpx;
+  /* 小屏幕适配 */
+  padding: clamp(16rpx, 2.5vw, 20rpx) clamp(24rpx, 3.5vw, 28rpx);
+  min-width: clamp(100rpx, 15vw, 120rpx);
 }
 
 .category-icon {
@@ -220,10 +243,14 @@ page {
   flex-direction: column;
   align-items: center;
   padding-bottom: 40rpx;
+  flex-shrink: 0;
+  margin-top: auto;
 }
 
 .start-btn {
   width: 80%;
+  max-width: 600rpx;
+  min-width: 400rpx;
   height: 96rpx;
   background: #FFC94A;
   color: #FFFFFF;
@@ -237,6 +264,10 @@ page {
   margin-bottom: 24rpx;
   position: relative;
   z-index: 1;
+  /* 小屏幕适配 */
+  width: clamp(70%, 80vw, 80%);
+  height: clamp(88rpx, 12vw, 96rpx);
+  font-size: clamp(28rpx, 4vw, 32rpx);
 }
 
 .start-btn text {

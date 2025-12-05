@@ -2,12 +2,17 @@
 page {
   height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* 安全区域适配 */
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .game-container {
   height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-sizing: border-box;
 }
 
 /* 顶部栏 */
@@ -68,7 +73,9 @@ page {
 /* 词语卡片 */
 .word-card {
   width: 100%;
-  min-height: 400rpx;
+  max-width: 700rpx;
+  min-height: 300rpx;
+  max-height: 60vh;
   background: #FFFFFF;
   border-radius: 24rpx;
   box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.12);
@@ -79,6 +86,9 @@ page {
   padding: 60rpx 40rpx;
   box-sizing: border-box;
   transition: all 0.2s ease;
+  /* 小屏幕适配 */
+  padding: clamp(40rpx, 7.5vw, 60rpx) clamp(30rpx, 5vw, 40rpx);
+  min-height: clamp(250rpx, 40vh, 400rpx);
 }
 
 .word-card.fade-out {
@@ -103,6 +113,10 @@ page {
   color: #222222;
   text-align: center;
   line-height: 1.2;
+  /* 响应式字体大小 */
+  font-size: clamp(56rpx, 9vw, 72rpx);
+  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 /* 得分显示 */
@@ -125,6 +139,10 @@ page {
   display: flex;
   width: 100%;
   height: 300rpx;
+  min-height: 250rpx;
+  flex-shrink: 0;
+  /* 小屏幕适配 */
+  height: clamp(250rpx, 40vh, 300rpx);
 }
 
 .action-left,
